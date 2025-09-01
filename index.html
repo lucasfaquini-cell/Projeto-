@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projrto!!!</title>
+    <style>
+        /* Importa uma fonte de pixel art */
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+        /* Reinicia o estilo padrão */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Estilo do corpo da página */
+        body {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #38385d;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #d1b899; /* Cor do texto de JRPG */
+            text-align: center;
+            image-rendering: pixelated; /* Garante que as imagens (se houver) fiquem pixeladas */
+        }
+
+        /* Título */
+        h1 {
+            font-size: 2.5rem; /* Menor para se adequar ao estilo pixelado */
+            margin-bottom: 20px;
+            text-shadow: 2px 2px #1f1f33; /* Sombra pixelada */
+        }
+
+        /* Parágrafos e texto de saudação */
+        p, .greeting {
+            font-size: 1rem;
+            color: #d1b899;
+            margin-top: 10px;
+        }
+
+        /* Contêiner principal (janela de diálogo) */
+        .container {
+            background-color: #1f1f33; /* Fundo escuro */
+            padding: 20px;
+            border: 4px solid #d1b899; /* Borda pixelada */
+            box-shadow: 8px 8px #000000; /* Sombra "dura" */
+            max-width: 500px;
+        }
+
+        /* Botão */
+        .btn {
+            font-family: 'Press Start 2P', cursive;
+            background-color: #555588; /* Cor de botão JRPG */
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border: 4px solid #d1b899;
+            cursor: pointer;
+            text-shadow: 1px 1px #000;
+            box-shadow: 4px 4px #000;
+            transition: none; /* Desativa a transição suave para um efeito mais "duro" */
+        }
+
+        /* Efeito de passar o mouse sobre o botão */
+        .btn:hover {
+            background-color: #7777aa; /* Cor de hover */
+            transform: translateY(2px) translateX(2px); /* Efeito de "apertar" o botão */
+            box-shadow: 2px 2px #000;
+        }
+
+        /* Contêiner do input */
+        .input-container {
+            margin-top: 30px;
+            display: flex; /* Alinha o input e o botão */
+            justify-content: center;
+        }
+
+        /* Campo de input */
+        input {
+            font-family: 'Press Start 2P', cursive;
+            padding: 10px;
+            font-size: 0.8rem;
+            border: 4px solid #d1b899; /* Linha corrigida */
+            background-color: #1f1f33;
+            color: #d1b899;
+            outline: none; /* Remove a borda de foco padrão */
+            box-shadow: 4px 4px #000;
+        }
+    </style>
+    <script>
+        function greetUser() {
+            const name = document.getElementById('nameInput').value;
+            const greetingMessage = document.getElementById('greetingMessage');
+            
+            if (name.trim() !== '') {
+                greetingMessage.textContent = `Olá, ${name}! Bem-vindo(a) à nossa jornada!`;
+            } else {
+                greetingMessage.textContent = 'Por favor, insira um nome para começar.';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Bem-vindo, Herói!</h1>
+        <p>Qual é o seu nome?</p>
+        <div class="input-container">
+            <input type="text" id="nameInput" placeholder="Digite seu nome...">
+        </div>
+        <button class="btn" onclick="greetUser()">Começar</button>
+        <p id="greetingMessage" class="greeting"></p>
+    </div>
+</body>
+</html>
