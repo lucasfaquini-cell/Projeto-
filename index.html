@@ -1,119 +1,157 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projrto!!!</title>
-    <style>
-        /* Importa uma fonte de pixel art */
-        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro Pixel - Guilty Gear</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Press Start 2P', cursive;
+            display: flex;
+            height: 100vh;
+            background-color: #1e1e1e;
+            color: #fff;
+        }
 
-        /* Reinicia o estilo padrão */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        .left, .right {
+            height: 100vh;
+        }
 
-        /* Estilo do corpo da página */
-        body {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #38385d;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #d1b899; /* Cor do texto de JRPG */
-            text-align: center;
-            image-rendering: pixelated; /* Garante que as imagens (se houver) fiquem pixeladas */
-        }
+        .left {
+            width: 60%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #ff3f34, #d40000);
+            border-right: 3px solid #fff;
+            position: relative;
+        }
 
-        /* Título */
-        h1 {
-            font-size: 2.5rem; /* Menor para se adequar ao estilo pixelado */
-            margin-bottom: 20px;
-            text-shadow: 2px 2px #1f1f33; /* Sombra pixelada */
-        }
+        .gif {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            animation: slideInUp 2s ease-out;
+        }
 
-        /* Parágrafos e texto de saudação */
-        p, .greeting {
-            font-size: 1rem;
-            color: #d1b899;
-            margin-top: 10px;
-        }
+        .container {
+            text-align: center;
+            border: 3px solid #f1c232;
+            padding: 30px;
+            background-color: #222;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 350px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            transform: translateX(10px);
+            position: relative;
+            z-index: 2;
+        }
 
-        /* Contêiner principal (janela de diálogo) */
-        .container {
-            background-color: #1f1f33; /* Fundo escuro */
-            padding: 20px;
-            border: 4px solid #d1b899; /* Borda pixelada */
-            box-shadow: 8px 8px #000000; /* Sombra "dura" */
-            max-width: 500px;
-        }
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            color: #ffec40;
+            text-shadow: 0 0 10px #ffec40;
+            animation: fadeInUp 1.5s ease-out;
+        }
 
-        /* Botão */
-        .btn {
-            font-family: 'Press Start 2P', cursive;
-            background-color: #555588; /* Cor de botão JRPG */
-            color: #ffffff;
-            font-size: 1rem;
-            padding: 10px 20px;
-            margin-top: 20px;
-            border: 4px solid #d1b899;
-            cursor: pointer;
-            text-shadow: 1px 1px #000;
-            box-shadow: 4px 4px #000;
-            transition: none; /* Desativa a transição suave para um efeito mais "duro" */
-        }
+        input[type="text"], input[type="email"], input[type="password"] {
+            background-color: #111;
+            border: 2px solid #ff3f34;
+            color: #fff;
+            padding: 10px;
+            width: 80%;
+            margin-bottom: 15px;
+            font-size: 16px;
+            border-radius: 5px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: slideInUp 1s ease-out forwards;
+        }
 
-        /* Efeito de passar o mouse sobre o botão */
-        .btn:hover {
-            background-color: #7777aa; /* Cor de hover */
-            transform: translateY(2px) translateX(2px); /* Efeito de "apertar" o botão */
-            box-shadow: 2px 2px #000;
-        }
+        input[type="submit"] {
+            background-color: #ff3f34;
+            border: none;
+            color: #fff;
+            font-size: 18px;
+            padding: 12px;
+            width: 90%;
+            cursor: pointer;
+            border-radius: 5px;
+            font-family: 'Press Start 2P', cursive;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
 
-        /* Contêiner do input */
-        .input-container {
-            margin-top: 30px;
-            display: flex; /* Alinha o input e o botão */
-            justify-content: center;
-        }
+        input[type="submit"]:hover {
+            background-color: #ffec40;
+            transform: scale(1.1);
+            color: #222;
+        }
 
-        /* Campo de input */
-        input {
-            font-family: 'Press Start 2P', cursive;
-            padding: 10px;
-            font-size: 0.8rem;
-            border: 4px solid #d1b899; /* Linha corrigida */
-            background-color: #1f1f33;
-            color: #d1b899;
-            outline: none; /* Remove a borda de foco padrão */
-            box-shadow: 4px 4px #000;
-        }
-    </style>
-    <script>
-        function greetUser() {
-            const name = document.getElementById('nameInput').value;
-            const greetingMessage = document.getElementById('greetingMessage');
-            
-            if (name.trim() !== '') {
-                greetingMessage.textContent = `Olá, ${name}! Bem-vindo(a) à nossa jornada!`;
-            } else {
-                greetingMessage.textContent = 'Por favor, insira um nome para começar.';
-            }
-        }
-    </script>
+        .right {
+            width: 40%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/en/7/7d/Guilty_Gear_Strive.jpg');
+            background-position: center;
+            background-size: cover;
+            filter: brightness(2.0);
+            position: relative;
+        }
+
+        .right::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 1;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                transform: translateY(30px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Bem-vindo, Herói!</h1>
-        <p>Qual é o seu nome?</p>
-        <div class="input-container">
-            <input type="text" id="nameInput" placeholder="Digite seu nome...">
-        </div>
-        <button class="btn" onclick="greetUser()">Começar</button>
-        <p id="greetingMessage" class="greeting"></p>
-    </div>
+    <div class="left">
+        <img src="https://media4.giphy.com/media/v1.Y2lkPTc5MGI3NjExaWNkZTlzZmQ1NWl3dzl0bGNleHp5aDR2aXB5OXR0bzN6MG14ZjYwNyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/htfHNAbmxEfgi3VyMo/giphy.gif" alt="GIF de exemplo" class="gif">
+        <div class="container">
+            <h1>Cadastro Pixel</h1>
+            <form action="#" method="post">
+                <input type="text" name="nome" placeholder="Nome Completo" required><br>
+                <input type="email" name="email" placeholder="E-mail" required><br>
+                <input type="password" name="senha" placeholder="Senha" required><br>
+                <input type="submit" value="Cadastrar">
+            </form>
+            <div class="message"></div>
+        </div>
+    </div>
+    <div class="right"></div>
 </body>
 </html>
